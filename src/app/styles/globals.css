@@ -1,0 +1,99 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Titillium+Web:wght@400;700&display=swap');
+
+:root {
+  --background: #fef7ff;
+  --foreground: #171717;
+  --brand-1: #05bffc;
+  --brand-2: #e82a8b;
+
+  --brand-1-dark: #037195;
+  --brand-2-dark: #83164f;
+
+  --white: #f7f7f7;
+  --black: #212427;
+
+  --primary-container: #f3edf7;
+  --text-primary: #212427;
+  --text-inverted: #f7f7f7;
+}
+
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+    --brand-1: #05bffc;
+    --brand-2: #e82a8b;
+
+    --brand-1-dark: #037195;
+    --brand-2-dark: #83164f;
+
+    --white: #212427;
+    --black: #f7f7f7;
+
+    --background-light: #353535;
+    --primary-container: #585659;
+    --text-primary: #f7f7f7;
+    --text-inverted: #212427;
+  }
+} */
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%; /* Setting base font size to 10px to simplify REM calculation */
+}
+
+body {
+  padding: 0px;
+  margin: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10rem;
+  color: var(--foreground);
+  background: var(--background);
+  font-family: 'Roboto', 'Titilium Web', sans-serif;
+  font-size: 1.6rem;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* General Styles */
+/* * {
+  padding: 0px;
+  margin: 0px;
+} */
+
+/* body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 2rem;
+  height: 100vh;
+  margin: 0;
+  background: var(--color-background-light);
+} */
+
+/* .hidden {
+  display: none;
+} */
+
+/* Header Styles */
+/* h1 {
+  font-family: 'Titillium Web', sans-serif;
+  font-weight: 700;
+  font-style: italic;
+  font-size: 7rem;
+  color: var(--color-black);
+} */
