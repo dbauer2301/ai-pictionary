@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Titillium+Web:wght@400;700&display=swap');
-
 :root {
   --background: #fef7ff;
   --foreground: #171717;
@@ -43,7 +41,6 @@
 
 html {
   box-sizing: border-box;
-  font-size: 62.5%; /* Setting base font size to 10px to simplify REM calculation */
 }
 
 body {
@@ -53,17 +50,22 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 10rem;
   color: var(--foreground);
   background: var(--background);
-  font-family: 'Roboto', 'Titilium Web', sans-serif;
-  font-size: 1.6rem;
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+.btn-primary {
+  @apply text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg px-10 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800;
+}
+
+.btn-secondary {
+  @apply py-2.5 px-10 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700;
 }
 
 /* General Styles */

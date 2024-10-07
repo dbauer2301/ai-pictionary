@@ -6,6 +6,7 @@ const config: Config = {
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
@@ -22,8 +23,8 @@ const config: Config = {
         'text-inverted': 'var(--text-inverted)',
       },
       fontFamily: {
-        roboto: ['Roboto', 'sans-serif'],
-        'titillium-web': ['"Titillium Web"', 'sans-serif'],
+        sans: ['Roboto', 'sans-serif'],
+        'bold-italic': ['"Titillium Web"', 'sans-serif'],
       },
     },
   },
