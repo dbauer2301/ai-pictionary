@@ -1,10 +1,10 @@
 const data = [
   {
-    term: 'tiger',
+    word: 'tiger',
     forbidden: ['tiger', 'stripes', 'animal'],
   },
   {
-    term: 'dolphin',
+    word: 'dolphin',
     forbidden: ['dolphin', 'ocean', 'mammal'],
   },
 ];
