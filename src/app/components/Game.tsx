@@ -7,11 +7,6 @@ import GameRules from './GameRules';
 import GameWord from './GameWord';
 import data from '../utils/data';
 
-// export interface curWordRefProps {
-//   word: string;
-//   forbidden: Array<string>;
-// }
-
 export default function Game() {
   const [curWordRef, setCurWordRef] = useState(0);
   const [imageUrl, setImageUrl] = useState('');

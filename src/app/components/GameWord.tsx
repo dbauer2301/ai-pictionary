@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
 import data from '../utils/data';
-// import { currentWordObjProps } from './Game';
 
 interface GameWordProps {
   curWordRef: number;
@@ -15,6 +14,7 @@ export default function GameWord({ curWordRef, setCurWordRef }: GameWordProps) {
 
   function handleCorrectClick() {
     // console.log('correct!');
+    if (curWordRef >= data.length - 1) return;
     setGameRound((curRound) => curRound + 1);
     setGameScore((curScore) => {
       const newScore = curScore + 1;
@@ -25,7 +25,7 @@ export default function GameWord({ curWordRef, setCurWordRef }: GameWordProps) {
   }
 
   function handleSkipClick() {
-    // console.log('skip');
+    if (curWordRef >= data.length - 1) return;
     setGameRound((curRound) => curRound + 1);
     setCurWordRef((curWord) => curWord + 1);
   }

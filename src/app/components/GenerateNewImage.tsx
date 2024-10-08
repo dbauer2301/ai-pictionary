@@ -3,7 +3,6 @@
 import { useState } from 'react';
 
 import data from '../utils/data';
-// import { currentWordObjProps } from './Game';
 
 interface GenerateNewImageProps {
   setImageUrl: (url: string) => void;
