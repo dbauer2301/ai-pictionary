@@ -8,7 +8,7 @@ export default function ViewGeneratedImage({
   loading,
 }: ViewGeneratedImageProps) {
   return (
-    <div className="flex justify-center items-center max-w-[700px] h-[525px] rounded-[1.2rem] overflow-hidden bg-primary-container shadow-custom relative">
+    <div className="flex justify-center items-center max-w-[700px] h-[425px] rounded-[1.2rem] overflow-hidden bg-primary-container shadow-custom relative">
       {loading ? (
         // Show loading spinner if an image is being fetched
         <div role="status">

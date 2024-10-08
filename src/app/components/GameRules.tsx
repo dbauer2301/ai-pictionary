@@ -1,10 +1,11 @@
 export default function GameRules() {
   return (
-    <section className="max-w-3xl mx-auto p-6 bg-white rounded-xl shadow-md dark:bg-gray-800">
-      <h2 className="text-2xl font-extrabold italic text-gray-900 uppercase mb-4 dark:text-white">
+    <section className="flex flex-col gap-y-4 mx-auto p-6 bg-primary-container rounded-xl dark:bg-gray-800">
+      <h2 className="text-2xl font-extrabold italic text-gray-900 uppercase dark:text-white">
         Game Rules
       </h2>
-      <p className="text-base text-gray-700 dark:text-gray-300 mb-6">
+      <hr></hr>
+      <p className="text-base text-gray-700 dark:text-gray-300">
         AI Pictionary puts a little twist on the classic game. Just like in
         regular Pictionary, players need to guess words or phrases based on an
         image. The twist: The pictures are not drawn by the players directly but
@@ -25,6 +26,13 @@ export default function GameRules() {
         <li>You have 4 minutes.</li>
         <li>Good luck, have fun!</li>
       </ul>
+
+      <p className="text-base text-gray-700 dark:text-gray-300">
+        If the word is guessed correctly, press the button "Correct Guess" below
+        to score a point. If you want to skip the current word, press the button
+        "Skip" to move to the next word. Each correct guess within the time
+        limit scores 1 point.
+      </p>
     </section>
   );
 }

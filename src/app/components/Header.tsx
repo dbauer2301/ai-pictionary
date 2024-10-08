@@ -1,6 +1,13 @@
 'use client';
 
 export default function Header() {
+  function handlePromptClick() {
+    const bottomElement = document.querySelector('.generate-btn');
+    if (bottomElement) {
+      bottomElement.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
   function handleGuessClick() {
     window.open('/guess', '_blank');
   }
@@ -11,7 +18,9 @@ export default function Header() {
         AI Pictionary
       </h1>
       <nav className="flex gap-x-2">
-        <button className="btn-secondary">I&#39;m prompting &#8681;</button>
+        <button className="btn-secondary" onClick={handlePromptClick}>
+          I&#39;m prompting &#8681;
+        </button>
         <button className="btn-secondary" onClick={handleGuessClick}>
           I want to guess &#8680;
         </button>

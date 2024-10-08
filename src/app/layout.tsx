@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import './styles/globals.css';
 
 export const metadata: Metadata = {
-  title: 'AI Image Generator Taboo Game',
-  description: 'AI Image Generator Taboo Game',
+  title: 'AI Pictionary',
+  description: 'An AI pictionary game',
 };
 
 export default function RootLayout({
