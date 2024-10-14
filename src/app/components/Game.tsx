@@ -5,7 +5,6 @@ import ViewGeneratedImage from './ViewGeneratedImage';
 import GenerateNewImage from './GenerateNewImage';
 import GameRules from './GameRules';
 import GameWord from './GameWord';
-import data from '../utils/data';
 
 export default function Game() {
   const [curWordRef, setCurWordRef] = useState(0);

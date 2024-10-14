@@ -3,6 +3,7 @@
 import { useState } from 'react';
 
 import data from '../utils/data';
+import imageGen from '../utils/api';
 
 interface GenerateNewImageProps {
   setImageUrl: (url: string) => void;
@@ -48,36 +49,21 @@ export default function GenerateNewImage({
     setLoading(true);
     setError(null);
 
-    const model = 'flux';
-    const seed = 1;
-
-    const cleanPrompt = sanitizePrompt(prompt);
-
     try {
-      const response = await fetch(
-        `https://image.pollinations.ai/prompt/${cleanPrompt}?model=${model}&width=700&height=525&seed=${seed}&nologo=true&enhance=false`
-      );
+      const cleanPrompt = sanitizePrompt(prompt);
+      const imageData = await imageGen(cleanPrompt);
 
-      if (!response.ok) {
-        const detailedError = await response.text();
-        console.log(detailedError);
-        throw new Error(
-          'Error creating your image, please try again with a different prompt.'
-        );
-      }
-
-      const blob = await response.blob();
-      const imageObjectURL = URL.createObjectURL(blob);
-      setImageUrl(imageObjectURL);
-
-      // Store the image URL in localStorage
-      localStorage.setItem('generatedImageUrl', imageObjectURL);
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        setError(error.message || 'Something went wrong, please try again.');
+      if (imageData) {
+        const imageObjectURL = `data:image/png;base64,${imageData}`;
+        setImageUrl(imageObjectURL);
+        // Store the image URL in localStorage
+        localStorage.setItem('generatedImageUrl', imageObjectURL);
       } else {
-        setError('An unknown error occurred.');
+        throw new Error('Image generation failed.');
       }
+    } catch (err) {
+      console.error('Error generating image:', err);
+      setError((err as Error).message);
     } finally {
       setLoading(false);
     }

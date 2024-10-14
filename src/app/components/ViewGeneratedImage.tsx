@@ -11,7 +11,10 @@ export default function ViewGeneratedImage({
     <div className="flex justify-center items-center max-w-[700px] h-[425px] rounded-[1.2rem] overflow-hidden bg-primary-container shadow-custom relative">
       {loading ? (
         // Show loading spinner if an image is being fetched
-        <div role="status">
+        <div
+          role="status"
+          className="flex flex-col gap-y-4 p-14 items-center justify-center"
+        >
           <svg
             aria-hidden="true"
             className="w-14 h-14 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
@@ -28,7 +31,10 @@ export default function ViewGeneratedImage({
               fill="currentFill"
             />
           </svg>
-          <span className="sr-only">Loading...</span>
+          <div className="text-gray-400 text-center">
+            Hint: Try to wait around 10 seconds in between prompts, we&lsquo;re
+            using a free API ;&#41;
+          </div>
         </div>
       ) : imageUrl ? (
         // Show the generated image if available

@@ -13,9 +13,9 @@ export default function Header() {
   }
 
   return (
-    <header className="flex flex-col justify-center items-center gap-y-10 w-full py-10 mb-10 overflow-hidden bg-gradient-to-r from-violet-500 to-fuchsia-500">
+    <header className="flex flex-col justify-center items-center gap-y-10 w-full py-24 mb-10 overflow-hidden bg-[url('/img/pitstop_background.webp')] bg-center bg-contain">
       <h1 className="font-bold-italic font-bold italic text-5xl text-white uppercase">
-        AI Pictionary
+        Pitstop 2024: AI Pictionary
       </h1>
       <nav className="flex gap-x-2">
         <button className="btn-secondary" onClick={handlePromptClick}>
