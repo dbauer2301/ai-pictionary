@@ -1,5 +1,10 @@
 import Together from 'together-ai';
+import { ImageCreateParams } from 'together-ai/resources/images.mjs';
 import apiKey from '../secrets/api_key';
+
+interface ExtendedImageCreateParams extends ImageCreateParams {
+  response_format?: string;
+}
 
 export default async function imageGen(prompt: string) {
   const together = new Together({ apiKey: apiKey });
@@ -13,7 +18,7 @@ export default async function imageGen(prompt: string) {
       steps: 1,
       n: 1,
       response_format: 'b64_json',
-    });
+    } as ExtendedImageCreateParams);
     return response.data[0].b64_json;
   } catch (error) {
     console.error('Error generating image:', error);
