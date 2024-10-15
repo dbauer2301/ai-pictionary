@@ -45,7 +45,7 @@ export default function GameWord({
     setGameRound(0);
     setGameScore(0);
     setImageUrl('/img/sbg_background.png');
-    setTimer(10);
+    setTimer(300);
     nextRound();
   }
 
