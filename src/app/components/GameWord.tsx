@@ -1,40 +1,95 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import data from '../utils/data';
+import { selectRandomWord } from '../utils/helpers';
+import { formatTime } from '../utils/helpers';
 
 interface GameWordProps {
   curWordRef: number;
   setCurWordRef: React.Dispatch<React.SetStateAction<number>>;
+  gameRunning: boolean;
+  setGameRunning: React.Dispatch<React.SetStateAction<boolean>>;
+  setImageUrl: (url: string) => void;
 }
 
-export default function GameWord({ curWordRef, setCurWordRef }: GameWordProps) {
-  const [gameRound, setGameRound] = useState(1);
+export default function GameWord({
+  curWordRef,
+  setCurWordRef,
+  gameRunning,
+  setGameRunning,
+  setImageUrl,
+}: GameWordProps) {
+  const [gameRound, setGameRound] = useState(0);
   const [gameScore, setGameScore] = useState(0);
-  // const [highScore, setHighScore] = useState(0);
+  const [wordRefArray, setWordRefArray] = useState(() =>
+    Array.from(data.keys())
+  );
+  const [timer, setTimer] = useState(300);
+
+  useEffect(() => {
+    let interval: NodeJS.Timeout;
+
+    if (gameRunning && timer > 0) {
+      interval = setInterval(() => {
+        setTimer((prevTime) => prevTime - 1);
+      }, 1000);
+    } else if (timer === 0) {
+      setGameRunning(false);
+    }
+
+    return () => clearInterval(interval);
+  }, [gameRunning, timer, setGameRunning]);
+
+  function startGame() {
+    setGameRunning(true);
+    setGameRound(0);
+    setGameScore(0);
+    setImageUrl('/img/sbg_background.png');
+    setTimer(10);
+    nextRound();
+  }
+
+  function resetGame() {
+    setGameRunning(false);
+    setGameRound(0);
+    setGameScore(0);
+    setImageUrl('/img/sbg_background.png');
+    setTimer(300);
+  }
+
+  function nextRound() {
+    setGameRound((curRound) => curRound + 1);
+
+    const [wordRef, updatedArray] = selectRandomWord(wordRefArray);
+
+    let newWordRefArray = updatedArray;
+
+    if (newWordRefArray.length === 0) {
+      newWordRefArray = Array.from(data.keys());
+    }
+    setWordRefArray(newWordRefArray);
+    setCurWordRef(wordRef);
+  }
 
   function handleCorrectClick() {
-    // console.log('correct!');
-    if (curWordRef >= data.length - 1) return;
-    setGameRound((curRound) => curRound + 1);
-    setGameScore((curScore) => {
-      const newScore = curScore + 1;
-      // if (highScore < newScore) setHighScore(newScore);
-      return newScore;
-    });
-    setCurWordRef((curWord) => curWord + 1);
+    setGameScore((curScore) => curScore + 1);
+    nextRound();
   }
 
   function handleSkipClick() {
-    if (curWordRef >= data.length - 1) return;
-    setGameRound((curRound) => curRound + 1);
-    setCurWordRef((curWord) => curWord + 1);
+    nextRound();
   }
 
   return (
     <section className="flex flex-col gap-y-4 max-w-3xl mx-auto p-6 bg-primary-container rounded-xl dark:bg-gray-800">
-      <h2 className="text-2xl font-extrabold italic text-gray-900 uppercase dark:text-white">
-        Round #{gameRound}
-      </h2>
+      <div className="flex justify-between">
+        <h2 className="text-2xl font-extrabold italic text-gray-900 uppercase dark:text-white">
+          Round #{gameRound}
+        </h2>
+        <p className="text-xl font-semibold text-gray-700 dark:text-gray-300">
+          {formatTime(timer)}
+        </p>
+      </div>
       <hr></hr>
       <div className="flex justify-between">
         <div className="flex flex-col gap-y-2">
@@ -56,9 +111,6 @@ export default function GameWord({ curWordRef, setCurWordRef }: GameWordProps) {
             <p className="text-xl font-semibold text-gray-700 dark:text-gray-300">
               Your Score: {gameScore}
             </p>
-            {/* <p className="text-xl font-semibold text-gray-700 dark:text-gray-300">
-              Highscore: {highScore}
-            </p> */}
           </div>
         </div>
       </div>
@@ -66,16 +118,26 @@ export default function GameWord({ curWordRef, setCurWordRef }: GameWordProps) {
         <button
           className="btn-green flex-1 flex-grow"
           onClick={handleCorrectClick}
+          disabled={!gameRunning}
+          hidden={!gameRunning}
         >
           Correct Guess &#10003;
         </button>
         <button
           className="btn-secondary flex-1 flex-grow"
           onClick={handleSkipClick}
+          disabled={!gameRunning}
+          hidden={!gameRunning}
         >
           Skip &#10132;
         </button>
       </div>
+      <button
+        className={`${gameRunning ? 'btn-secondary' : 'btn-primary'} flex-grow`}
+        onClick={gameRunning ? resetGame : startGame}
+      >
+        {gameRunning ? 'Reset Game' : 'Start Game'}
+      </button>
     </section>
   );
 }

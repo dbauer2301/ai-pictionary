@@ -41,7 +41,7 @@ export default function GuessImage() {
       <img
         src={imageUrl}
         alt="AI Generated Image"
-        style={{ width: '700px', height: '525px', objectFit: 'cover' }}
+        style={{ width: '1024px', height: '768px', objectFit: 'cover' }}
         className="rounded-[1.2rem] overflow-hidden bg-primary-container shadow-custom"
       />
     </div>

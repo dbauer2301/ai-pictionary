@@ -33,7 +33,7 @@ export default function ViewGeneratedImage({
           </svg>
           <div className="text-gray-400 text-center">
             Hint: Try to wait around 10 seconds in between prompts, we&lsquo;re
-            using a free API ;&#41;
+            using a free API with a rate limit ;&#41;
           </div>
         </div>
       ) : imageUrl ? (

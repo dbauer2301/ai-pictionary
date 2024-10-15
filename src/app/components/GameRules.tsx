@@ -14,8 +14,8 @@ export default function GameRules() {
 
       <ul className="space-y-3 text-base text-gray-600 list-disc list-outside px-4 dark:text-gray-400">
         <li>
-          The prompting player cannot use words that are listed as 'forbidden'
-          below.
+          The prompting player cannot use words that are listed as
+          &lsquo;forbidden&lsquo; below.
         </li>
         <li>The guessing player can only see the generated image.</li>
         <li>
@@ -23,15 +23,15 @@ export default function GameRules() {
           image.
         </li>
         <li>Prompts may only be written in English.</li>
-        <li>You have 4 minutes.</li>
+        <li>You have 5 minutes.</li>
         <li>Good luck, have fun!</li>
       </ul>
 
       <p className="text-base text-gray-700 dark:text-gray-300">
-        If the word is guessed correctly, press the button "Correct Guess" below
-        to score a point. If you want to skip the current word, press the button
-        "Skip" to move to the next word. Each correct guess within the time
-        limit scores 1 point.
+        If the word is guessed correctly, press the button &lsquo;Correct
+        Guess&lsquo; below to score a point. If you want to skip the current
+        word, press the button &lsquo;Skip&lsquo; to move to the next word. Each
+        correct guess within the time limit scores 1 point.
       </p>
     </section>
   );

@@ -4,6 +4,7 @@ import { useState } from 'react';
 
 import data from '../utils/data';
 import imageGen from '../utils/api';
+import { sanitizePrompt } from '../utils/helpers';
 
 interface GenerateNewImageProps {
   setImageUrl: (url: string) => void;
@@ -21,20 +22,12 @@ export default function GenerateNewImage({
   const [prompt, setPrompt] = useState('');
   const [error, setError] = useState<string | null>(null);
 
-  function sanitizePrompt(prompt: string) {
-    const lowerCasePrompt = prompt.toLowerCase();
-    const promptArray = lowerCasePrompt.split(/[\s.,!?;:()'"“”/$%§*#-]+/);
-    const sanitizedPrompt = promptArray.join(' ');
-    console.log(`Sani prompt: ${sanitizedPrompt}`);
-    return sanitizedPrompt;
-  }
-
   function checkInput(prompt: string) {
-    const promptArray = sanitizePrompt(prompt).split(' ');
-    console.log(promptArray);
-    return promptArray.some((value) =>
-      data[curWordRef].forbidden.includes(value)
+    const promptWordsArr = sanitizePrompt(prompt).split(' ');
+    const forbiddenWordsArr = data[curWordRef].forbidden.flatMap((item) =>
+      item.split(' ')
     );
+    return promptWordsArr.some((value) => forbiddenWordsArr.includes(value));
   }
 
   async function createImage(e: React.FormEvent) {
